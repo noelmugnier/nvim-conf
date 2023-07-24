@@ -30,6 +30,9 @@ return {
 						["<C-p>"] = function(...)
 							require("telescope.actions").cycle_history_prev(...)
 						end,
+						["<ESC>"] = function(...)
+							require("telescope.actions").close(...)
+						end,
 					},
 				},
 			},
