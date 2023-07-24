@@ -139,4 +139,7 @@ return {
 			})
 		end,
 	},
+	{ "fedepujol/move.nvim", event = "VeryLazy" },
+	{ "mg979/vim-visual-multi", event = "VeryLazy" },
+	{ "terryma/vim-expand-region", event = "VeryLazy" },
 }
