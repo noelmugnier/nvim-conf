@@ -4,7 +4,6 @@ local keymap = vim.keymap.set
 keymap("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true })
 keymap("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true })
 
-
 keymap("n", "<A-j>", ":m .+1<CR>==")
 keymap("n", "<A-k>", ":m .-2<CR>==")
 keymap("i", "<A-j>", "<Esc>:m .+1<CR>==gi")
@@ -12,27 +11,23 @@ keymap("i", "<A-k>", "<Esc>:m .-2<CR>==gi")
 keymap("v", "<A-j>", ":m '>+1<CR>gv=gv")
 keymap("v", "<A-k>", ":m '<-2<CR>gv=gv")
 
-keymap({"n", "v"}, "<C-A-j>", "<ESC>:res +5<CR>")
-keymap({"n", "v"}, "<C-A-k>", "<ESC>:res -5<CR>")
-keymap({"n", "v"}, "<C-A-h>", "<ESC>:vertical resize -5<CR>")
-keymap({"n", "v"}, "<C-A-l>", "<ESC>:vertical resize +5<CR>")
+keymap({ "n", "v" }, "<C-A-j>", "<ESC>:res +5<CR>")
+keymap({ "n", "v" }, "<C-A-k>", "<ESC>:res -5<CR>")
+keymap({ "n", "v" }, "<C-A-h>", "<ESC>:vertical resize -5<CR>")
+keymap({ "n", "v" }, "<C-A-l>", "<ESC>:vertical resize +5<CR>")
 keymap("i", "<C-A-j>", "<ESC>:res +5<CR>i")
 keymap("i", "<C-A-k>", "<ESC>:res -5<CR>i")
 keymap("i", "<C-A-h>", "<ESC>:vertical resize -5<CR>i")
 keymap("i", "<C-A-l>", "<ESC>:vertical resize +5<CR>i")
 
-keymap({"n", "v"}, "<C-l>", "<ESC><C-w>l")
-keymap({"n", "v"}, "<C-h>", "<ESC><C-w>h")
-keymap({"n", "v"}, "<C-j>", "<ESC><C-w>j")
-keymap({"n", "v"}, "<C-k>", "<ESC><C-w>k")
+keymap({ "n", "v" }, "<C-l>", "<ESC><C-w>l")
+keymap({ "n", "v" }, "<C-h>", "<ESC><C-w>h")
+keymap({ "n", "v" }, "<C-j>", "<ESC><C-w>j")
+keymap({ "n", "v" }, "<C-k>", "<ESC><C-w>k")
 keymap("i", "<C-l>", "<ESC><C-w>l<CR>i")
 keymap("i", "<C-h>", "<ESC><C-w>h<CR>i")
 keymap("i", "<C-j>", "<ESC><C-w>j<CR>i")
 keymap("i", "<C-k>", "<ESC><C-w>k<CR>i")
-
-keymap("n", "<S-d>", "Yp")
-keymap("i", "<S-d>", "<ESC>Ypi")
-
 
 -- Better viewing
 keymap("n", "n", "nzzzv")
@@ -66,27 +61,21 @@ keymap("v", "<", "<gv")
 keymap("v", ">", ">gv")
 
 -- Paste over currently selected text without yanking it
-keymap({"n", "v", "x"}, "p", '"_dp')
-keymap({"n", "v", "x"}, "P", '"_dP')
-keymap({"n", "v", "x"}, "y", [["+y]])
-keymap("n", "<A-d>", [[YP]])
+keymap({ "n", "v" }, "y", [["+y]])
+keymap("n", "<A-d>", "YP")
+keymap("i", "<A-d>", "<ESC>YPi")
 
 -- Insert blank line
 keymap("n", "]<Space>", "o<Esc>")
 keymap("n", "[<Space>", "O<Esc>")
 
-keymap(
-  "n",
-  "<leader>fe",
-  ":Telescope file_browser path=%:p:h select_buffer=true<CR>",
-  { noremap = true }
-)
+keymap("n", "<leader>fe", ":Telescope file_browser path=%:p:h select_buffer=true<CR>", { noremap = true })
 
 -- Auto indent
 keymap("n", "i", function()
-  if #vim.fn.getline "." == 0 then
-    return [["_cc]]
-  else
-    return "i"
-  end
+	if #vim.fn.getline(".") == 0 then
+		return [["_cc]]
+	else
+		return "i"
+	end
 end, { expr = true })
