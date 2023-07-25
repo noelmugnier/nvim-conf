@@ -1,11 +1,20 @@
 #!/bin/bash
 
-session="dev"
+session=$1
+path=$2
+
+if [ -z $session ]; then
+	session="dev"
+fi
+
+if [ -z $path ]; then
+	path="~/projects"
+fi
 
 tmux has-session -t $session 2>/dev/null
 
 if [ $? != 0 ]; then
-	cd ~/projects
+	cd $path
 	tmux new-session -d -s $session
 
 	tmux new-window -t $session:0 -n nvim
