@@ -145,4 +145,11 @@ return {
 	{ "fedepujol/move.nvim", event = "VeryLazy" },
 	{ "mg979/vim-visual-multi", event = "VeryLazy" },
 	{ "terryma/vim-expand-region", event = "VeryLazy" },
+	{
+		"ggandor/leap.nvim",
+		event = "VeryLazy",
+		config = function()
+			require("leap").set_default_keymaps()
+		end,
+	},
 }
