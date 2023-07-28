@@ -152,4 +152,87 @@ return {
 			require("leap").set_default_keymaps()
 		end,
 	},
+	{
+		"windwp/nvim-autopairs",
+		event = "InsertEnter",
+		opts = {
+			disable_filetype = { "TelescopePrompt", "vim" },
+		},
+		config = function()
+			local npairs = require("nvim-autopairs")
+			npairs.setup({
+				check_ts = true,
+			})
+		end,
+	},
+	{
+		"windwp/nvim-ts-autotag",
+		lazy = false,
+		config = {
+			enable = true,
+			enable_rename = true,
+			enable_close = true,
+			enable_close_on_slash = true,
+			filetypes = { "html", "xml" },
+		},
+	},
+	{
+		"folke/trouble.nvim",
+		dependencies = { "nvim-tree/nvim-web-devicons" },
+		opts = {
+			-- your cnfiguration comes here
+			-- o leave it empty to use the default settings
+			-- rfer to the configuration section below
+		},
+		keys = {
+			{
+				"<leader>xx",
+				function()
+					require("trouble").open()
+				end,
+				desc = "",
+			},
+			{
+				"<leader>xw",
+				function()
+					require("trouble").open("workspace_diagnostics")
+				end,
+				desc = "",
+			},
+			{
+				"<leader>xd",
+				function()
+					require("trouble").open("document_diagnostics")
+				end,
+				desc = "",
+			},
+			{
+				"<leader>xl",
+				function()
+					require("trouble").open("quickfix")
+				end,
+				desc = "",
+			},
+			{
+				"<leader>xq",
+				function()
+					require("trouble").open("loclist")
+				end,
+				desc = "",
+			},
+		},
+	},
+	{
+		"tpope/vim-fugitive",
+		cmd = { "Git", "GBrowse", "Gdiffsplit", "Gvdiffsplit" },
+		dependencies = {
+			"tpope/vim-rhubarb",
+		},
+		keys = {
+			{ "<leader>gs", "<cmd>Git<cr>", desc = "Git Status" },
+			{ "<leader>gb", "<cmd>GBrowse<cr>", desc = "Git Browse" },
+			{ "<leader>gd", "<cmd>Gdiffsplit<cr>", desc = "Git Diff" },
+			{ "<leader>gv", "<cmd>Gvdiffsplit<cr>", desc = "Git Vertical Diff" },
+		},
+	},
 }

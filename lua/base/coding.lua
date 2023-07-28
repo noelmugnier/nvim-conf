@@ -6,7 +6,9 @@ return {
 	},
 	{
 		"numToStr/Comment.nvim",
-		dependencies = { "JoosepAlviste/nvim-ts-context-commentstring" },
+		dependencies = {
+			"joosepalviste/nvim-ts-context-commentstring",
+		},
 		keys = { { "gc", mode = { "n", "v" } }, { "gcc", mode = { "n", "v" } }, { "gbc", mode = { "n", "v" } } },
 		config = function(_, _)
 			local opts = {
@@ -307,4 +309,8 @@ return {
 		"github/copilot.vim",
 		event = "VeryLazy",
 	},
+	{
+		"Issafalcon/lsp-overloads.nvim",
+	},
+	{ "Hoffs/omnisharp-extended-lsp.nvim" },
 }

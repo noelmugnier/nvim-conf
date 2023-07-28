@@ -1,19 +1,19 @@
 return {
-  {
-    "folke/which-key.nvim",
-    event = "VeryLazy",
-    opts = {
-      defaults = {
-        ["<leader>d"] = { name = "+DAP" },
-      },
-    },
-  },
-  {
-    "mfussenegger/nvim-dap",
-    dependencies = {
-      { "rcarriga/nvim-dap-ui" },
-      { "theHamsta/nvim-dap-virtual-text" },
-    },
+	{
+		"folke/which-key.nvim",
+		event = "VeryLazy",
+		opts = {
+			defaults = {
+				["<leader>d"] = { name = "+DAP" },
+			},
+		},
+	},
+	{
+		"mfussenegger/nvim-dap",
+		dependencies = {
+			{ "rcarriga/nvim-dap-ui" },
+			{ "theHamsta/nvim-dap-virtual-text" },
+		},
     -- stylua: ignore
     keys = {
       { "<leader>dR", function() require("dap").run_to_cursor() end, desc = "Run to Cursor", },
@@ -37,29 +37,56 @@ return {
       { "<leader>dx", function() require("dap").terminate() end, desc = "Terminate", },
       { "<leader>du", function() require("dap").step_out() end, desc = "Step Out", },
     },
-    opts = {},
-    config = function(plugin, opts)
-      require("nvim-dap-virtual-text").setup {
-        commented = true,
-      }
+		opts = {},
+		config = function(plugin, opts)
+			require("nvim-dap-virtual-text").setup({
+				commented = true,
+			})
 
-      local dap, dapui = require "dap", require "dapui"
-      dapui.setup {}
+			local api = vim.api
+			local keymap_restore = {}
+			local dap, dapui = require("dap"), require("dapui")
+			dapui.setup({})
 
-      dap.listeners.after.event_initialized["dapui_config"] = function()
-        dapui.open()
-      end
-      dap.listeners.before.event_terminated["dapui_config"] = function()
-        dapui.close()
-      end
-      dap.listeners.before.event_exited["dapui_config"] = function()
-        dapui.close()
-      end
+			dap.listeners.after.event_initialized["dapui_config"] = function()
+				dapui.open()
+			end
+			dap.listeners.before.event_terminated["dapui_config"] = function()
+				dapui.close()
+			end
+			dap.listeners.before.event_exited["dapui_config"] = function()
+				dapui.close()
+			end
 
-      -- set up debugger
-      for k, _ in pairs(opts.setup) do
-        opts.setup[k](plugin, opts)
-      end
-    end,
-  },
+			-- dap.listeners.after["event_initialized"]["me"] = function()
+			-- 	for _, buf in pairs(api.nvim_list_bufs()) do
+			-- 		local keymaps = api.nvim_buf_get_keymap(buf, "n")
+			-- 		for _, keymap in pairs(keymaps) do
+			-- 			if keymap.lhs == "K" then
+			-- 				table.insert(keymap_restore, keymap)
+			-- 				api.nvim_buf_del_keymap(buf, "n", "K")
+			-- 			end
+			-- 		end
+			-- 	end
+			-- 	api.nvim_set_keymap("n", "K", '<Cmd>lua require("dap.ui.widgets").hover()<CR>', { silent = true })
+			-- end
+
+			-- dap.listeners.after["event_terminated"]["me"] = function()
+			-- 	for _, keymap in pairs(keymap_restore) do
+			-- 		api.nvim_buf_set_keymap(
+			-- 			keymap.buffer,
+			-- 			keymap.mode,
+			-- 			keymap.lhs,
+			-- 			keymap.rhs,
+			-- 			{ silent = keymap.silent == 1 }
+			-- 		)
+			-- 	end
+			-- 	keymap_restore = {}
+			-- end
+			-- set up debugger
+			for k, _ in pairs(opts.setup) do
+				opts.setup[k](plugin, opts)
+			end
+		end,
+	},
 }
