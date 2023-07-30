@@ -7,7 +7,8 @@ local function get_codelldb()
   local codelldb = mason_registry.get_package "codelldb"
   local extension_path = codelldb:get_install_path() .. "/extension/"
   local codelldb_path = extension_path .. "adapter/codelldb"
-  local liblldb_path = vim.fn.has "mac" == 1 and extension_path .. "lldb/lib/liblldb.dylib" or extension_path .. "lldb/lib/liblldb.so"
+  local liblldb_path = vim.fn.has "mac" == 1 and extension_path .. "lldb/lib/liblldb.dylib" or
+  extension_path .. "lldb/lib/liblldb.so"
   return codelldb_path, liblldb_path
 end
 
@@ -59,7 +60,7 @@ return {
       setup = {
         rust_analyzer = function(_, opts)
           local codelldb_path, liblldb_path = get_codelldb()
-          local lsp_utils = require "base.lsp.utils"
+          local lsp_utils = require "plugins.lsp.utils"
           lsp_utils.on_attach(function(client, bufnr)
             local map = function(mode, lhs, rhs, desc)
               if desc then
@@ -70,9 +71,9 @@ return {
             -- stylua: ignore
             if client.name == "rust_analyzer" then
               map("n", "<leader>le", "<cmd>RustRunnables<cr>", "Runnables")
-              map("n", "<leader>ll", function() vim.lsp.codelens.run() end, "Code Lens" )
-              map("n", "<leader>lt", "<cmd>Cargo test<cr>", "Cargo test" )
-              map("n", "<leader>lR", "<cmd>Cargo run<cr>", "Cargo run" )
+              map("n", "<leader>ll", function() vim.lsp.codelens.run() end, "Code Lens")
+              map("n", "<leader>lt", "<cmd>Cargo test<cr>", "Cargo test")
+              map("n", "<leader>lR", "<cmd>Cargo run<cr>", "Cargo run")
             end
           end)
 

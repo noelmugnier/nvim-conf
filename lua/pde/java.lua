@@ -23,7 +23,8 @@ local function get_bundles()
   local java_debug_path = java_debug:get_install_path()
   local java_test_path = java_test:get_install_path()
   local bundles = {}
-  vim.list_extend(bundles, vim.split(vim.fn.glob(java_debug_path .. "/extension/server/com.microsoft.java.debug.plugin-*.jar"), "\n"))
+  vim.list_extend(bundles,
+    vim.split(vim.fn.glob(java_debug_path .. "/extension/server/com.microsoft.java.debug.plugin-*.jar"), "\n"))
   vim.list_extend(bundles, vim.split(vim.fn.glob(java_test_path .. "/extension/server/*.jar"), "\n"))
   return bundles
 end
@@ -67,7 +68,7 @@ return {
         callback = function()
           -- LSP capabilities
           local jdtls = require "jdtls"
-          local capabilities = require("base.lsp.utils").capabilities()
+          local capabilities = require("plugins.lsp.utils").capabilities()
           local extendedClientCapabilities = jdtls.extendedClientCapabilities
           extendedClientCapabilities.resolveAdditionalTextEditsSupport = true
 

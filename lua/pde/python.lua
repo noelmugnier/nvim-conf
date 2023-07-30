@@ -44,7 +44,7 @@ return {
       },
       setup = {
         ruff_lsp = function()
-          local lsp_utils = require "base.lsp.utils"
+          local lsp_utils = require "plugins.lsp.utils"
           lsp_utils.on_attach(function(client, _)
             if client.name == "ruff_lsp" then
               -- Disable hover in favor of Pyright
@@ -53,7 +53,7 @@ return {
           end)
         end,
         pyright = function(_, _)
-          local lsp_utils = require "base.lsp.utils"
+          local lsp_utils = require "plugins.lsp.utils"
           lsp_utils.on_attach(function(client, bufnr)
             local map = function(mode, lhs, rhs, desc)
               if desc then
@@ -63,10 +63,10 @@ return {
             end
             -- stylua: ignore
             if client.name == "pyright" then
-              map("n", "<leader>lo", "<cmd>PyrightOrganizeImports<cr>",  "Organize Imports" )
-              map("n", "<leader>lC", function() require("dap-python").test_class() end,  "Debug Class" )
-              map("n", "<leader>lM", function() require("dap-python").test_method() end,  "Debug Method" )
-              map("v", "<leader>lE", function() require("dap-python").debug_selection() end, "Debug Selection" )
+              map("n", "<leader>lo", "<cmd>PyrightOrganizeImports<cr>", "Organize Imports")
+              map("n", "<leader>lC", function() require("dap-python").test_class() end, "Debug Class")
+              map("n", "<leader>lM", function() require("dap-python").test_method() end, "Debug Method")
+              map("v", "<leader>lE", function() require("dap-python").debug_selection() end, "Debug Selection")
             end
           end)
         end,

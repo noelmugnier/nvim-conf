@@ -28,7 +28,8 @@ return {
     opts = function(_, opts)
       vim.list_extend(
         opts.ensure_installed,
-        { "delve", "gotests", "golangci-lint", "gofumpt", "goimports", "golangci-lint-langserver", "impl", "gomodifytags", "iferr", "gotestsum" }
+        { "delve", "gotests", "golangci-lint", "gofumpt", "goimports", "golangci-lint-langserver", "impl",
+          "gomodifytags", "iferr", "gotestsum" }
       )
     end,
   },
@@ -75,7 +76,7 @@ return {
       },
       setup = {
         gopls = function(_, _)
-          local lsp_utils = require "base.lsp.utils"
+          local lsp_utils = require "plugins.lsp.utils"
           lsp_utils.on_attach(function(client, bufnr)
             local map = function(mode, lhs, rhs, desc)
               if desc then
@@ -90,7 +91,7 @@ return {
               map("n", "<leader>lt", "<cmd>GoTest<Cr>", "Go Test")
               map("n", "<leader>lR", "<cmd>GoRun<Cr>", "Go Run")
               map("n", "<leader>dT", "<cmd>lua require('dap-go').debug_test()<cr>", "Go Debug Test")
-              
+
               if not client.server_capabilities.semanticTokensProvider then
                 local semantic = client.config.capabilities.textDocument.semanticTokens
                 client.server_capabilities.semanticTokensProvider = {
