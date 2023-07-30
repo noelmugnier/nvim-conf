@@ -5,6 +5,7 @@ return {
     opts = {
       defaults = {
         ["<leader>l"] = { name = "+Language" },
+        ["<leader>w"] = { name = "+Workspace" },
       },
     },
   },
@@ -24,7 +25,7 @@ return {
       },
     },
     config = function(plugin, opts)
-      require("base.lsp.servers").setup(plugin, opts)
+      require("plugins.lsp.servers").setup(plugin, opts)
     end,
   },
   {
@@ -38,7 +39,7 @@ return {
     },
     config = function(_, opts)
       require("mason").setup(opts)
-      local mr = require "mason-registry"
+      local mr = require("mason-registry")
       local function ensure_installed()
         for _, tool in ipairs(opts.ensure_installed) do
           local p = mr.get_package(tool)
@@ -59,7 +60,7 @@ return {
     event = "BufReadPre",
     dependencies = { "mason.nvim" },
     opts = function()
-      local nls = require "null-ls"
+      local nls = require("null-ls")
       return {
         root_dir = require("null-ls.utils").root_pattern(".null-ls-root", ".neoconf.json", "Makefile", ".git"),
         sources = {
@@ -69,11 +70,15 @@ return {
     end,
   },
   {
-  "j-hui/fidget.nvim",
-  tag = "legacy",
-  event = "LspAttach",
-  opts = {
-    -- options
+    "j-hui/fidget.nvim",
+    tag = "legacy",
+    event = "LspAttach",
+    opts = {
+      -- options
+    },
   },
-}
+  {
+    "Issafalcon/lsp-overloads.nvim",
+  },
+  { "Hoffs/omnisharp-extended-lsp.nvim" },
 }

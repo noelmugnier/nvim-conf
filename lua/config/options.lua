@@ -10,9 +10,9 @@ opt.confirm = true
 opt.cursorline = true
 opt.expandtab = true
 opt.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
-opt.foldcolumn = "1" -- '0' is not bad
+opt.foldcolumn = "1"        -- '0' is not bad
 opt.foldenable = true
-opt.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
+opt.foldlevel = 99          -- Using ufo provider need a large value, feel free to decrease the value
 opt.foldlevelstart = 99
 opt.formatoptions = "jqlnt" -- tcqj
 opt.hidden = true
@@ -51,7 +51,7 @@ opt.updatetime = 200
 opt.wildmode = "longest:full,full"
 
 vim.g.mapleader = " "
-vim.g.maplocalleader = ","
+vim.g.maplocalleader = " "
 
 vim.g.markdown_recommended_style = 0
 

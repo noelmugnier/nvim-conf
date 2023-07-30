@@ -4,16 +4,14 @@ local keymap = vim.keymap.set
 keymap("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true })
 keymap("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true })
 
--- keymap("n", "<A-j>", ":m .+1<CR>==")
--- keymap("n", "<A-k>", ":m .-2<CR>==")
--- keymap("i", "<A-j>", "<Esc>:m .+1<CR>==gi")
--- keymap("i", "<A-k>", "<Esc>:m .-2<CR>==gi")
--- keymap("v", "<A-j>", ":m '>+1<CR>gv=gv")
--- keymap("v", "<A-k>", ":m '<-2<CR>gv=gv")
+keymap("n", "<A-j>", ":m .+1<CR>==")
+keymap("n", "<A-k>", ":m .-2<CR>==")
+keymap("v", "<A-j>", ":m '>+1<CR>gv=gv")
+keymap("v", "<A-k>", ":m '<-2<CR>gv=gv")
 
 local opts = { noremap = true, silent = true }
 -- Normal-mode commands
-keymap("n", "<A-j>", ":MoveLine(1)<CR>", opts)
+--[[ keymap("n", "<A-j>", ":MoveLine(1)<CR>", opts)
 
 keymap("n", "<A-k>", ":MoveLine(-1)<CR>", opts)
 keymap("n", "<A-h>", ":MoveHChar(-1)<CR>", opts)
@@ -23,7 +21,7 @@ keymap("n", "<A-l>", ":MoveHChar(1)<CR>", opts)
 keymap("v", "<A-j>", ":MoveBlock(1)<CR>", opts)
 keymap("v", "<A-k>", ":MoveBlock(-1)<CR>", opts)
 keymap("v", "<A-h>", ":MoveHBlock(-1)<CR>", opts)
-keymap("v", "<A-l>", ":MoveHBlock(1)<CR>", opts)
+keymap("v", "<A-l>", ":MoveHBlock(1)<CR>", opts) ]]
 
 keymap({ "n", "v" }, "<C-A-j>", "<ESC>:res +5<CR>")
 keymap({ "n", "v" }, "<C-A-k>", "<ESC>:res -5<CR>")
@@ -88,9 +86,9 @@ keymap("n", "<leader>fe", ":Telescope file_browser path=%:p:h select_buffer=true
 
 -- Auto indent
 keymap("n", "i", function()
-	if #vim.fn.getline(".") == 0 then
-		return [["_cc]]
-	else
-		return "i"
-	end
+  if #vim.fn.getline(".") == 0 then
+    return [["_cc]]
+  else
+    return "i"
+  end
 end, { expr = true })
