@@ -1,3 +1,6 @@
+local icons = require("config.icons")
+local Job = require("plenary.job")
+
 return {
 	{
 		"nvim-lualine/lualine.nvim",
@@ -48,7 +51,7 @@ return {
 						"branch",
 					},
 					lualine_c = {
-						"filename",
+						-- "filename",
 						{ "fancy_cwd", substitute_home = true },
 						{
 							"diff",
