@@ -27,9 +27,10 @@ return {
 				["<leader>o"] = {
 					name = "+Options",
 				},
-				["<leader>q"] = { "<cmd>qa<cr>", "Quit" },
-				["<leader>Q"] = { "<cmd>qa!<cr>", "Quit without saving" },
-				["<leader>w"] = {
+				["<leader>n"] = { "<ESC>:enew<cr>", "New file" },
+				["<leader>q"] = { "<ESC><cmd>qa<cr>", "Quit" },
+				["<leader>Q"] = { "<ESC><cmd>qa!<cr>", "Quit without saving" },
+				["<leader>s"] = {
 					function()
 						local ok, res = pcall(vim.cmd, "write")
 						if ok then
@@ -45,7 +46,14 @@ return {
 					end,
 					"Save buffer",
 				},
-				["<leader>x"] = { "<cmd>q<cr>", "Close buffer" },
+				["<leader>x"] = { "<ESC>:q<cr>", "Close buffer" },
+				["<leader>wV"] = { "<ESC>:vsp %<cr>", "Vertical split" },
+				["<leader>wv"] = { "<ESC>:vnew<cr>", "New Vertical split" },
+				["<leader>wS"] = { "<ESC>:sp %<cr>", "Horizontal split" },
+				["<leader>ws"] = { "<ESC>:new<cr>", "New Horizontal split" },
+				["<leader>wf"] = { "<ESC><C-w>o<CR>", "Focus editor" },
+				["<leader>wx"] = { "<ESC><C-w>x<CR>", "Swap editor" },
+				["<leader>w="] = { "<ESC><C-w>=<CR>", "Space evenly" },
 			},
 		},
 		config = function(_, opts)
