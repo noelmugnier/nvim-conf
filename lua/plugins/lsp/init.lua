@@ -15,8 +15,8 @@ return {
 			{ "j-hui/fidget.nvim", config = true },
 			"williamboman/mason.nvim",
 			"williamboman/mason-lspconfig.nvim",
-			"SmiteshP/nvim-navbuddy",
-			"SmiteshP/nvim-navic",
+			-- "SmiteshP/nvim-navbuddy",
+			-- "SmiteshP/nvim-navic",
 		},
 		opts = {
 			servers = {},
