@@ -57,9 +57,9 @@ function M.setup(_, opts)
 	lsp_utils.on_attach(function(client, bufnr)
 		require("plugins.lsp.format").on_attach(client, bufnr)
 		require("plugins.lsp.keymaps").on_attach(client, bufnr)
-		if client.server_capabilities.signatureHelpProvider then
-			require("lsp-overloads").setup(client, {})
-		end
+		-- if client.server_capabilities.signatureHelpProvider then
+		-- 	require("lsp-overloads").setup(client, {})
+		-- end
 	end)
 
 	lsp_init() -- diagnostics, handlers
