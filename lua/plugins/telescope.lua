@@ -23,7 +23,8 @@ return {
       { "<leader>fs", "<cmd>Telescope live_grep_args<cr>", desc = "Search files content" },
       { "<leader>fw", "<cmd>Telescope grep_string<cr>",    desc = "Search current word" },
       { "<leader>fd", "<cmd>Telescope diagnostics<cr>",    desc = "Search Diagnostics" },
-      { "<leader>fr", "<cmd>Telescope oldfiles<cr>",       desc = "Previous Files" },
+      { "<leader>fr", function()
+            require('telescope').extensions.recent_files.pick() end,       desc = "Previous Files" },
     },
 		opts = {
 			defaults = {
@@ -56,16 +57,17 @@ return {
 			telescope.load_extension("ui-select")
 			telescope.load_extension("live_grep_args")
 			telescope.load_extension("projects")
+			telescope.load_extension("recent_files")
 		end,
 	},
 	{
 		"nvim-telescope/telescope-file-browser.nvim",
-		event = "VeryLazy",
 		dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
 		keys = {
 			{ "<leader>fe", "<cmd>Telescope file_browser<cr>", desc = "File Browser" },
 		},
 	},
-	{ "nvim-telescope/telescope-ui-select.nvim", event = "VeryLazy" },
-	{ "nvim-telescope/telescope-live-grep-args.nvim", event = "VeryLazy" },
+	{ "nvim-telescope/telescope-ui-select.nvim" },
+	{ "nvim-telescope/telescope-live-grep-args.nvim" },
+	{ "smartpde/telescope-recent-files" },
 }
