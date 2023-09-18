@@ -30,6 +30,7 @@ return {
 				["<leader>n"] = { "<ESC>:enew<cr>", "New file" },
 				["<leader>q"] = { "<ESC><cmd>qa<cr>", "Quit" },
 				["<leader>Q"] = { "<ESC><cmd>qa!<cr>", "Quit without saving" },
+				["<leader>S"] = { "<ESC><cmd>wa<cr>", "Save all buffers" },
 				["<leader>s"] = {
 					function()
 						local ok, res = pcall(vim.cmd, "write")
@@ -46,7 +47,7 @@ return {
 					end,
 					"Save buffer",
 				},
-				["<leader>x"] = { "<ESC>:q<cr>", "Close buffer" },
+				["<leader>x"] = { "<ESC>:bd<cr>", "Close buffer" },
 				["<leader>wV"] = { "<ESC>:vsp %<cr>", "Vertical split" },
 				["<leader>wv"] = { "<ESC>:vnew<cr>", "New Vertical split" },
 				["<leader>wS"] = { "<ESC>:sp %<cr>", "Horizontal split" },

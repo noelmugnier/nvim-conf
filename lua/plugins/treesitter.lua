@@ -3,8 +3,6 @@ return {
 		"nvim-treesitter/nvim-treesitter",
 		dependencies = {
 			"nvim-treesitter/nvim-treesitter-textobjects",
-			"lukas-reineke/indent-blankline.nvim",
-			"windwp/nvim-ts-autotag",
 			"joosepalviste/nvim-ts-context-commentstring",
 		},
 		build = ":tsupdate",
@@ -59,16 +57,16 @@ return {
 						["]c"] = "@class.outer",
 					},
 					goto_next_end = {
-						["]f"] = "@function.outer",
-						["]c"] = "@class.outer",
+						["]F"] = "@function.outer",
+						["]C"] = "@class.outer",
 					},
 					goto_previous_start = {
 						["[f"] = "@function.outer",
 						["[c"] = "@class.outer",
 					},
 					goto_previous_end = {
-						["[f"] = "@function.outer",
-						["[c"] = "@class.outer",
+						["[F"] = "@function.outer",
+						["[C"] = "@class.outer",
 					},
 				},
 				swap = {

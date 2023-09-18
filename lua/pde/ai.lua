@@ -8,8 +8,8 @@ return {
 		event = "VeryLazy",
 		opts = {
 			defaults = {
-				["<leader>c"] = { name = "+ChatGPT" },
-				["<leader>C"] = { name = "+Copilot" },
+				["<leader>C"] = { name = "+ChatGPT" },
+				["<leader>c"] = { name = "+Copilot" },
 			},
 		},
 	},
@@ -17,9 +17,9 @@ return {
 		"github/copilot.vim",
 		event = "VeryLazy",
 		keys = {
-			{ "<leader>Ce", "<cmd>Copilot enable<cr>", desc = "Enable copilot" },
-			{ "<leader>Cd", "<cmd>Copilot disable<cr>", desc = "Disable copilot" },
-			{ "<leader>Cp", "<cmd>Copilot panel<cr>", desc = "Suggestions panel" },
+			{ "<leader>ce", "<cmd>Copilot enable<cr>", desc = "Enable copilot" },
+			{ "<leader>cd", "<cmd>Copilot disable<cr>", desc = "Disable copilot" },
+			{ "<leader>cp", "<cmd>Copilot panel<cr>", desc = "Suggestions panel" },
 		},
 	},
 	-- {

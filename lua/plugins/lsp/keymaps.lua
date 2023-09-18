@@ -5,22 +5,23 @@ function M.on_attach(client, buffer)
 
   -- stylua: ignore
   self:map("<leader>l", "", {desc = "+Language"})
-	self:map("gd", function()
-		require("telescope.builtin").lsp_definitions({ reuse_win = true })
-	end, { desc = "Goto Definition" })
-	self:map("gr", function()
+	self:map("gd", vim.lsp.buf.definition, { desc = "Goto Definition" })
+	-- self:map("gd", function()
+	-- 	require("telescope.builtin").lsp_definitions({ reuse_win = true })
+	-- end, { desc = "Goto Definition" })
+	self:map("gR", function()
 		require("telescope.builtin").lsp_references({ reuse_win = true })
 	end, { desc = "Goto References" })
   -- stylua: ignore
-  self:map("gi", function() require("telescope.builtin").lsp_implementations({ reuse_win = true }) end,
+  self:map("gI", function() require("telescope.builtin").lsp_implementations({ reuse_win = true }) end,
     { desc = "Goto Implementation" })
   -- stylua: ignore
-  self:map("gy", function() require("telescope.builtin").lsp_type_definitions({ reuse_win = true }) end,
-    { desc = "Goto Type Definition" })
+  self:map("gD", function() require("telescope.builtin").lsp_definitions({ reuse_win = true }) end,
+    { desc = "Goto Definitions" })
 	self:map("K", vim.lsp.buf.hover, { desc = "Hover" })
 	self:map("<leader>lh", vim.lsp.buf.hover, { desc = "Hover" })
 	self:map("gK", vim.lsp.buf.signature_help, { desc = "Signature Help", has = "signatureHelp" })
-	self:map("<leader>lH", vim.lsp.buf.signature_help, { desc = "Signature Help", has = "signatureHelp" })
+	self:map("<leader>lk", vim.lsp.buf.signature_help, { desc = "Signature Help", has = "signatureHelp" })
 	self:map("]d", M.diagnostic_goto(true), { desc = "Next Diagnostic" })
 	self:map("[d", M.diagnostic_goto(false), { desc = "Prev Diagnostic" })
 	self:map("]e", M.diagnostic_goto(true, "ERROR"), { desc = "Next Error" })
@@ -28,22 +29,20 @@ function M.on_attach(client, buffer)
 	self:map("]w", M.diagnostic_goto(true, "WARNING"), { desc = "Next Warning" })
 	self:map("[w", M.diagnostic_goto(false, "WARNING"), { desc = "Prev Warning" })
 	self:map("<leader>la", vim.lsp.buf.code_action, { desc = "Code Action", mode = { "n", "v" }, has = "codeAction" })
+	self:map("<a-cr>", vim.lsp.buf.code_action, { desc = "Code Action", mode = { "n", "v" }, has = "codeAction" })
 	self:map("ga", vim.lsp.buf.code_action, { desc = "Code Action", mode = { "n", "v" }, has = "codeAction" })
 
 	local format = require("plugins.lsp.format").format
 	self:map("<leader>lf", format, { desc = "Format Document", mode = "n", has = "documentFormatting" })
 	self:map("<leader>lf", format, { desc = "Format Range", mode = "v", has = "documentRangeFormatting" })
 	self:map("<leader>lr", vim.lsp.buf.rename, { expr = true, desc = "Rename", has = "rename" })
-	--[[ self:map("<leader>wa", vim.lsp.buf.add_workspace_folder, { expr = true, desc = "Workspace add folder" })
-	self:map("<leader>wr", vim.lsp.buf.remove_workspace_folder, { expr = true, desc = "Workspace remove folder" })
-	self:map("<leader>wl", function()
-		print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-	end, { expr = true, desc = "Workspace list folder" }) ]]
+	self:map("gr", vim.lsp.buf.rename, { expr = true, desc = "Rename", has = "rename" })
 
 	self:map("<leader>ls", require("telescope.builtin").lsp_document_symbols, { desc = "Document Symbols" })
 	self:map("<leader>lS", require("telescope.builtin").lsp_dynamic_workspace_symbols, { desc = "Workspace Symbols" })
 	self:map("<leader>ld", require("plugins.lsp.utils").toggle_diagnostics, { desc = "Toggle Inline Diagnostics" })
 	self:map("<leader>ln", ":Navbuddy<CR>", { desc = "Navigate symbols" })
+	self:map("<leader>or", ":LspRestart<CR>", { desc = "Restart LSP" })
 end
 
 function M.new(client, buffer)

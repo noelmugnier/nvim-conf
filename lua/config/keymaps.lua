@@ -12,12 +12,12 @@ keymap("v", "<A-k>", ":m '<-2<CR>gv=gv")
 
 keymap({ "n", "v" }, "<C-A-j>", "<ESC>:res +5<CR>")
 keymap({ "n", "v" }, "<C-A-k>", "<ESC>:res -5<CR>")
-keymap({ "n", "v" }, "<C-A-h>", "<ESC>:vertical resize -5<CR>")
-keymap({ "n", "v" }, "<C-A-l>", "<ESC>:vertical resize +5<CR>")
+keymap({ "n", "v" }, "<C-A-h>", "<ESC>:vertical resize +5<CR>")
+keymap({ "n", "v" }, "<C-A-l>", "<ESC>:vertical resize -5<CR>")
 keymap("i", "<C-A-j>", "<ESC>:res +5<CR>i")
 keymap("i", "<C-A-k>", "<ESC>:res -5<CR>i")
-keymap("i", "<C-A-h>", "<ESC>:vertical resize -5<CR>i")
-keymap("i", "<C-A-l>", "<ESC>:vertical resize +5<CR>i")
+keymap("i", "<C-A-h>", "<ESC>:vertical resize +5<CR>i")
+keymap("i", "<C-A-l>", "<ESC>:vertical resize -5<CR>i")
 
 -- keymap({ "n", "v" }, "<C-l>", "<ESC><C-w>l")
 keymap({ "n", "v" }, "<leader>wl", "<ESC><C-w>l", { desc = "Go to editor right" })
@@ -44,11 +44,11 @@ keymap("n", "<C-u>", "<C-u>zz")
 
 -- Paste
 keymap("n", "]p", "o<Esc>p", { desc = "Paste below" })
-keymap("n", "]P", "O<Esc>p", { desc = "Paste above" })
+keymap("n", "[p", "O<Esc>p", { desc = "Paste above" })
 
 -- Better escape using jk in insert and terminal mode
-keymap("i", "jj", "<ESC>")
-keymap("t", "jj", "<C-\\><C-n>")
+keymap("i", "jk", "<ESC>")
+keymap("t", "jk", "<C-\\><C-n>")
 -- keymap("t", "<C-h>", "<C-\\><C-n><C-w>h")
 -- keymap("t", "<C-j>", "<C-\\><C-n><C-w>j")
 -- keymap("t", "<C-k>", "<C-\\><C-n><C-w>k")
@@ -65,9 +65,12 @@ keymap("v", ">", ">gv")
 
 -- Paste over currently selected text without yanking it
 keymap({ "n", "v" }, "y", [["+y]])
-keymap("n", "<A-d>", "YP")
-keymap("i", "<A-d>", "<ESC>YPi")
-keymap("v", "<A-d>", "YP")
+keymap("n", "<A-d>", "Yp")
+keymap("n", "<A-D>", "YP")
+keymap("i", "<A-d>", "<ESC>Ypi")
+keymap("i", "<A-D>", "<ESC>YPi")
+keymap("v", "<A-d>", "Yp")
+keymap("v", "<A-D>", "YP")
 
 -- Insert blank line
 keymap("n", "]<Space>", "o<Esc>")
