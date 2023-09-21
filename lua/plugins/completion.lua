@@ -33,7 +33,7 @@ return {
 				return col ~= 0
 					and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
 			end
-
+			local cmp_window = require("cmp.config.window")
 			return {
 				completion = {
 					completeopt = "menu,menuone,noinsert",
@@ -57,12 +57,69 @@ return {
 					end,
 				},
 				mapping = cmp.mapping.preset.insert({
-					["<C-b>"] = cmp.mapping.scroll_docs(-4),
-					["<C-f>"] = cmp.mapping.scroll_docs(4),
-					["<C-Space>"] = cmp.mapping.complete(),
-					["<C-e>"] = cmp.mapping.abort(),
+					-- ["<C-b>"] = cmp.mapping.scroll_docs(-4),
+					-- ["<C-f>"] = cmp.mapping.scroll_docs(4),
+					-- ["<C-Space>"] = cmp.mapping.complete(),
+					-- ["<C-e>"] = cmp.mapping.abort(),
+					-- ["<CR>"] = cmp.mapping({
+					-- 	i = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false }),
+					-- 	c = function(fallback)
+					-- 		if cmp.visible() then
+					-- 			cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false })
+					-- 		else
+					-- 			fallback()
+					-- 		end
+					-- 	end,
+					-- }),
+					-- ["<C-j>"] = cmp.mapping(function(fallback)
+					-- 	if cmp.visible() then
+					-- 		cmp.select_next_item()
+					-- 	elseif luasnip.expand_or_jumpable() then
+					-- 		luasnip.expand_or_jump()
+					-- 	elseif has_words_before() then
+					-- 		cmp.complete()
+					-- 	else
+					-- 		fallback()
+					-- 	end
+					-- end, {
+					-- 	"i",
+					-- 	"s",
+					-- 	"c",
+					-- }),
+					-- ["<C-k>"] = cmp.mapping(function(fallback)
+					-- 	if cmp.visible() then
+					-- 		cmp.select_prev_item()
+					-- 	elseif luasnip.jumpable(-1) then
+					-- 		luasnip.jump(-1)
+					-- 	else
+					-- 		fallback()
+					-- 	end
+					-- end, {
+					-- 	"i",
+					-- 	"s",
+					-- 	"c",
+					-- }),
+					["<Up>"] = cmp.mapping.select_prev_item(),
+					["<Down>"] = cmp.mapping.select_next_item(),
+					["<C-k>"] = cmp.mapping.select_prev_item(),
+					["<C-d>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
+					["<C-j>"] = cmp.mapping.select_next_item(),
+					["<C-u>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
+					["<C-Space>"] = cmp.mapping(
+						cmp.mapping.complete({
+							reason = cmp.ContextReason.Auto,
+						}),
+						{ "i", "c" }
+					),
 					["<CR>"] = cmp.mapping({
-						i = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false }),
+						-- i = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
+						i = function(fallback)
+							if cmp.visible() then
+								cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false })
+							else
+								fallback()
+							end
+						end,
 						c = function(fallback)
 							if cmp.visible() then
 								cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false })
@@ -71,22 +128,18 @@ return {
 							end
 						end,
 					}),
-					["<C-j>"] = cmp.mapping(function(fallback)
+					["<C-e>"] = cmp.mapping({ i = cmp.mapping.abort(), c = cmp.mapping.close() }),
+					["<esc>"] = cmp.mapping({ i = cmp.mapping.abort(), c = cmp.mapping.close() }),
+					["<Tab>"] = cmp.mapping(function(fallback)
 						if cmp.visible() then
 							cmp.select_next_item()
-						elseif luasnip.expand_or_jumpable() then
+						elseif luasnip.expand_or_locally_jumpable() then
 							luasnip.expand_or_jump()
-						elseif has_words_before() then
-							cmp.complete()
 						else
 							fallback()
 						end
-					end, {
-						"i",
-						"s",
-						"c",
-					}),
-					["<C-k>"] = cmp.mapping(function(fallback)
+					end, { "i" }),
+					["<S-Tab>"] = cmp.mapping(function(fallback)
 						if cmp.visible() then
 							cmp.select_prev_item()
 						elseif luasnip.jumpable(-1) then
@@ -94,11 +147,7 @@ return {
 						else
 							fallback()
 						end
-					end, {
-						"i",
-						"s",
-						"c",
-					}),
+					end, { "i" }),
 				}),
 				sources = cmp.config.sources({
 					{ name = "luasnip", group_index = 1 },
@@ -115,16 +164,27 @@ return {
 						return item
 					end,
 				},
-				experimental = {
-					hl_group = "LspCodeLens",
-					ghost_text = {},
+				performance = {
+					debounce = 26,
+					throttle = 48,
+					fetching_timeout = 200,
+					async_budget = 50,
+					max_view_entries = 32,
 				},
 				window = {
-					documentation = {
-						border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
-						winhighlight = "NormalFloat:NormalFloat,FloatBorder:TelescopeBorder",
-					},
+					completion = cmp_window.bordered(),
+					documentation = cmp_window.bordered(),
 				},
+				-- experimental = {
+				-- 	hl_group = "LspCodeLens",
+				-- 	ghost_text = {},
+				-- },
+				-- window = {
+				-- 	documentation = {
+				-- 		border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
+				-- 		winhighlight = "NormalFloat:NormalFloat,FloatBorder:TelescopeBorder",
+				-- 	},
+				-- },
 			}
 		end,
 	},
