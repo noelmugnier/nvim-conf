@@ -64,13 +64,13 @@ keymap("v", "<", "<gv")
 keymap("v", ">", ">gv")
 
 -- Paste over currently selected text without yanking it
-keymap({ "n", "v" }, "y", [["+y]])
-keymap("n", "<A-d>", "Yp")
-keymap("n", "<A-D>", "YP")
-keymap("i", "<A-d>", "<ESC>Ypi")
-keymap("i", "<A-D>", "<ESC>YPi")
-keymap("v", "<A-d>", "Yp")
-keymap("v", "<A-D>", "YP")
+keymap({ "n", "v" }, "Y", [["+y]])
+keymap("n", "<A-d>", "yyp")
+keymap("n", "<A-D>", "yyP")
+keymap("i", "<A-d>", "<ESC>yypi")
+keymap("i", "<A-D>", "<ESC>yyPi")
+keymap("v", "<A-d>", "yyp")
+keymap("v", "<A-D>", "yyP")
 
 -- Insert blank line
 keymap("n", "]<Space>", "o<Esc>")

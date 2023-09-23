@@ -4,7 +4,6 @@ function M.on_attach(client, buffer)
 	local self = M.new(client, buffer)
 
   -- stylua: ignore
-  self:map("<leader>l", "", {desc = "+Language"})
 	self:map("gd", vim.lsp.buf.definition, { desc = "Goto Definition" })
 	-- self:map("gd", function()
 	-- 	require("telescope.builtin").lsp_definitions({ reuse_win = true })
@@ -41,7 +40,6 @@ function M.on_attach(client, buffer)
 	self:map("<leader>ls", require("telescope.builtin").lsp_document_symbols, { desc = "Document Symbols" })
 	self:map("<leader>lS", require("telescope.builtin").lsp_dynamic_workspace_symbols, { desc = "Workspace Symbols" })
 	self:map("<leader>ld", require("plugins.lsp.utils").toggle_diagnostics, { desc = "Toggle Inline Diagnostics" })
-	self:map("<leader>ln", ":Navbuddy<CR>", { desc = "Navigate symbols" })
 	self:map("<leader>or", ":LspRestart<CR>", { desc = "Restart LSP" })
 end
 

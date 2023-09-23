@@ -53,29 +53,31 @@ return {
 					enable = true,
 					set_jumps = true, -- whether to set jumps in the jumplist
 					goto_next_start = {
-						["]f"] = "@function.outer",
-						["]c"] = "@class.outer",
+						["]f"] = "function",
+						["]c"] = "class",
 					},
 					goto_next_end = {
-						["]F"] = "@function.outer",
-						["]C"] = "@class.outer",
+						["]F"] = "function",
+						["]C"] = "class",
 					},
 					goto_previous_start = {
-						["[f"] = "@function.outer",
-						["[c"] = "@class.outer",
+						["[f"] = "function",
+						["[c"] = "class",
 					},
 					goto_previous_end = {
-						["[F"] = "@function.outer",
-						["[C"] = "@class.outer",
+						["[F"] = "function",
+						["[C"] = "class",
 					},
 				},
 				swap = {
 					enable = true,
 					swap_next = {
-						["<leader>la"] = "@parameter.inner",
+						["<leader>ln"] = "parameter",
+						["]a"] = "parameter",
 					},
 					swap_previous = {
-						["<leader>lA"] = "@parameter.inner",
+						["<leader>lp"] = "parameter",
+						["[a"] = "parameter",
 					},
 				},
 			},

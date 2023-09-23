@@ -129,7 +129,7 @@ return {
 						end,
 					}),
 					["<C-e>"] = cmp.mapping({ i = cmp.mapping.abort(), c = cmp.mapping.close() }),
-					["<esc>"] = cmp.mapping({ i = cmp.mapping.abort(), c = cmp.mapping.close() }),
+					-- ["<esc>"] = cmp.mapping({ i = cmp.mapping.abort(), c = cmp.mapping.close() }),
 					["<Tab>"] = cmp.mapping(function(fallback)
 						if cmp.visible() then
 							cmp.select_next_item()
