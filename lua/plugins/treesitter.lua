@@ -55,29 +55,31 @@ return {
 					goto_next_start = {
 						["]f"] = "function",
 						["]c"] = "class",
+						["]a"] = "parameter",
 					},
 					goto_next_end = {
 						["]F"] = "function",
 						["]C"] = "class",
+						["]A"] = "parameter",
 					},
 					goto_previous_start = {
 						["[f"] = "function",
 						["[c"] = "class",
+						["[a"] = "parameter",
 					},
 					goto_previous_end = {
 						["[F"] = "function",
 						["[C"] = "class",
+						["[A"] = "parameter",
 					},
 				},
 				swap = {
 					enable = true,
 					swap_next = {
-						["<leader>ln"] = "parameter",
-						["]a"] = "parameter",
+						["]x"] = "parameter",
 					},
 					swap_previous = {
-						["<leader>lp"] = "parameter",
-						["[a"] = "parameter",
+						["[x"] = "parameter",
 					},
 				},
 			},
