@@ -42,8 +42,16 @@ return {
 						["<C-p>"] = function(...)
 							require("telescope.actions").cycle_history_prev(...)
 						end,
+						["<C-t>"] = function(...)
+							require("trouble.providers.telescope").open_with_trouble(...)
+						end,
 						["<ESC>"] = function(...)
 							require("telescope.actions").close(...)
+						end,
+					},
+					n = {
+						["<C-t>"] = function(...)
+							require("trouble.providers.telescope").open_with_trouble(...)
 						end,
 					},
 				},
