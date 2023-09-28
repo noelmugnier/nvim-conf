@@ -49,8 +49,9 @@ opt.title = true
 opt.undofile = true
 opt.updatetime = 200
 opt.wildmode = "longest:full,full"
-opt.winbar = "%m %f"
+-- opt.winbar = "%m %f"
 -- opt.winbar = "%m %f  %{%v:lua.require'nvim-navic'.get_location()%}"
+opt.showtabline = 1
 
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
