@@ -81,6 +81,18 @@ return {
                 "<cmd>w|lua require('neotest').run.run({strategy = require('neotest-dotnet.strategies.netcoredbg'), is_custom_dotnet_debug = true})<cr>",
                 "Debug Nearest")
 						end
+						vim.keymap.set(
+							"n",
+							"<leader>tt",
+							"<cmd>3TermExec cmd='dotnet test' name=test<cr>",
+							{ desc = "Launch dotnet test" }
+						)
+						vim.keymap.set(
+							"n",
+							"<leader>lb",
+							"<cmd>4TermExec cmd='dotnet build' name=build<cr>",
+							{ desc = "Build" }
+						)
 					end)
 				end,
 			},
