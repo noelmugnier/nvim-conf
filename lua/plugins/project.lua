@@ -4,7 +4,7 @@ return {
 		event = "VeryLazy",
 		keys = {
 			{ "<leader>fp", "<cmd>Telescope projects<cr>", desc = "Projects" },
-			{ "<leader>W", ":ProjectRoot<cr>", desc = "Set current dir" },
+			{ "<leader>ow", ":ProjectRoot<cr>", desc = "Set buffer dir as Workspace" },
 		},
 		config = function()
 			require("project_nvim").setup({

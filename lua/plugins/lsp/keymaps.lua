@@ -3,20 +3,16 @@ local M = {}
 function M.on_attach(client, buffer)
 	local self = M.new(client, buffer)
 
-  -- stylua: ignore
-	self:map("gd", vim.lsp.buf.definition, { desc = "Goto Definition" })
-	-- self:map("gd", function()
-	-- 	require("telescope.builtin").lsp_definitions({ reuse_win = true })
-	-- end, { desc = "Goto Definition" })
+	self:map("gd", function()
+		require("telescope.builtin").lsp_definitions({ reuse_win = true })
+	end, { desc = "Goto Definition" })
 	self:map("gR", function()
 		require("telescope.builtin").lsp_references({ reuse_win = true })
 	end, { desc = "Goto References" })
-  -- stylua: ignore
-  self:map("gI", function() require("telescope.builtin").lsp_implementations({ reuse_win = true }) end,
-    { desc = "Goto Implementation" })
-  -- stylua: ignore
-  self:map("gD", function() require("telescope.builtin").lsp_definitions({ reuse_win = true }) end,
-    { desc = "Goto Definitions" })
+	self:map("gI", function()
+		require("telescope.builtin").lsp_implementations({ reuse_win = true })
+	end, { desc = "Goto Implementation" })
+	self:map("gD", vim.lsp.buf.declaration, { desc = "Goto Declaration" })
 	self:map("K", vim.lsp.buf.hover, { desc = "Hover" })
 	self:map("<leader>lh", vim.lsp.buf.hover, { desc = "Hover" })
 	self:map("gK", vim.lsp.buf.signature_help, { desc = "Signature Help", has = "signatureHelp" })
@@ -25,8 +21,8 @@ function M.on_attach(client, buffer)
 	self:map("[d", M.diagnostic_goto(false), { desc = "Prev Diagnostic" })
 	self:map("]e", M.diagnostic_goto(true, "ERROR"), { desc = "Next Error" })
 	self:map("[e", M.diagnostic_goto(false, "ERROR"), { desc = "Prev Error" })
-	self:map("]w", M.diagnostic_goto(true, "WARNING"), { desc = "Next Warning" })
-	self:map("[w", M.diagnostic_goto(false, "WARNING"), { desc = "Prev Warning" })
+	self:map("]w", M.diagnostic_goto(true, "WARN"), { desc = "Next Warning" })
+	self:map("[w", M.diagnostic_goto(false, "WARN"), { desc = "Prev Warning" })
 	self:map("<leader>la", vim.lsp.buf.code_action, { desc = "Code Action", mode = { "n", "v" }, has = "codeAction" })
 	self:map("<a-cr>", vim.lsp.buf.code_action, { desc = "Code Action", mode = { "n", "v" }, has = "codeAction" })
 	self:map("ga", vim.lsp.buf.code_action, { desc = "Code Action", mode = { "n", "v" }, has = "codeAction" })
@@ -38,7 +34,9 @@ function M.on_attach(client, buffer)
 	self:map("gr", vim.lsp.buf.rename, { expr = true, desc = "Rename", has = "rename" })
 
 	self:map("<leader>ls", require("telescope.builtin").lsp_document_symbols, { desc = "Document Symbols" })
+	self:map("gs", require("telescope.builtin").lsp_document_symbols, { desc = "Document Symbols" })
 	self:map("<leader>lS", require("telescope.builtin").lsp_dynamic_workspace_symbols, { desc = "Workspace Symbols" })
+	self:map("gS", require("telescope.builtin").lsp_dynamic_workspace_symbols, { desc = "Workspace Symbols" })
 	self:map("<leader>ld", require("plugins.lsp.utils").toggle_diagnostics, { desc = "Toggle Inline Diagnostics" })
 	self:map("<leader>or", ":LspRestart<CR>", { desc = "Restart LSP" })
 end
@@ -61,7 +59,7 @@ function M:map(lhs, rhs, opts)
 		lhs,
 		type(rhs) == "string" and ("<cmd>%s<cr>"):format(rhs) or rhs,
 		---@diagnostic disable-next-line: no-unknown
-		{ silent = true, buffer = self.buffer, expr = opts.expr, desc = opts.desc }
+		{ desc = opts.desc }
 	)
 end
 

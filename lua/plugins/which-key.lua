@@ -27,6 +27,12 @@ return {
 				["<leader>o"] = {
 					name = "+Options",
 				},
+				["<leader>l"] = {
+					name = "+Language",
+				},
+				["<leader>w"] = {
+					name = "+Windows",
+				},
 				["<leader>n"] = { "<ESC>:enew<cr>", "New file" },
 				["<leader>q"] = { "<ESC><cmd>qa<cr>", "Quit" },
 				["<leader>Q"] = { "<ESC><cmd>qa!<cr>", "Quit without saving" },
