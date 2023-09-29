@@ -12,13 +12,12 @@ return {
 				end
 			end,
 			hide_numbers = true, -- hide the number column in toggleterm buffers
-			shade_filetypes = {},
-			autochdir = false, -- when neovim changes it current directory the terminal will change it's own when next it's opened
+			autochdir = true, -- when neovim changes it current directory the terminal will change it's own when next it's opened
 			start_in_insert = true,
 			-- insert_mappings = true, -- whether or not the open mapping applies in insert mode
 			-- terminal_mappings = true, -- whether or not the open mapping applies in the opened terminals
 			persist_size = true,
-			persist_mode = false, -- if set to true (default) the previous terminal mode will be remembered
+			persist_mode = true, -- if set to true (default) the previous terminal mode will be remembered
 			direction = "float",
 			close_on_exit = true, -- close the terminal window when the process exits
 			-- Change the default shell. Can be a string or a function returning a string

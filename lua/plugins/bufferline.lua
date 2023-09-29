@@ -12,7 +12,7 @@ return {
 		"akinsho/bufferline.nvim",
 		event = "VeryLazy",
 		dependencies = "nvim-tree/nvim-web-devicons",
-		config = {
+		opts = {
 			options = {
 				indicator = {
 					icon = "▎", -- this should be omitted if indicator style is not 'icon'
