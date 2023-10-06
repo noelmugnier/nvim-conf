@@ -33,7 +33,7 @@ return {
 			{ "<a-t>", "<cmd>ToggleSelect<cr>", mode = { "n" } },
 			{ "<c-t>", "<cmd>ToggleTerm<cr>", mode = { "t" } },
 			{ "<c-g>", '<cmd>5TermExec cmd="lazygit" name=git<cr>', mode = { "n" } },
-			{ "<c-m>", '<cmd>6TermExec cmd="htop" name=htop<cr>', mode = { "n" } },
+			-- { "<c-m>", '<cmd>6TermExec cmd="htop" name=htop<cr>', mode = { "n" } },
 		},
 	},
 }
